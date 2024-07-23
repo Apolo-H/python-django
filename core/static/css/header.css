@@ -1,0 +1,149 @@
+#header {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.container_header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+}
+
+.header_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    padding: 15px 10px;
+}
+
+.header_logo {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    min-width: 285px;
+}
+
+.header_logo a {
+    margin: 0 0.5rem;
+    cursor: pointer;
+    color: #000;
+    font-size: clamp(2rem, 100vw, 2.5rem);
+}
+
+.header_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.header_links ul {
+    display: inline-flex;
+    align-items: center;
+}
+
+.header_links a {
+    margin: 0 1rem;
+}
+
+.hyper a {
+    font-size: 1.8rem;
+    z-index: 1;
+    position: relative;
+    color: #333335;
+}
+
+.hyper {
+    position: relative;
+    width: max-content;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.5rem;
+}
+
+.hyper::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: -20px;
+    top: 0;
+    background: linear-gradient(to right, #fdba74, #fb923c);
+    transform: skewX(-45deg);
+    transition: 0.75s ease;
+}
+
+.hyper:hover::after {
+    transition: 0.75s ease;
+    width: 160%;
+}
+
+.hyper:hover a {
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.header_content i {
+    color: #000;
+    font-size: 2.5rem;
+    transition: 0.5s ease;
+}
+
+.container-burgue {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 1rem;
+    position: relative;
+    cursor: pointer;
+    margin-left: 3em;
+    margin-right: 2rem;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background: #000;
+    position: absolute;
+}
+
+.bar:first-child {
+    top: 0;
+}
+
+.bar:last-child {
+    bottom: 0;
+}
+
+.header_content i:hover {
+    transform: scale(1.4);
+    transition: 0.5s ease;
+}
+
+i.instagram:hover {
+    color: transparent;
+    background: #833ab4;
+    background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: 0.5s ease;
+}
+
+i.whatsapp:hover {
+    color: transparent;
+    background: #833ab4;
+    background: linear-gradient(45deg, #00cf4d, #00e676);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: 0.5s ease;
+}

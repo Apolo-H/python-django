@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static './css/main__index.css' %}" />
+    <title>Document</title>
+  </head>
+
+  <main>
+    <section id="main-index">
+      <div class="main-index__hero__container">
+        <div class="main-index__hero__content">
+          <div class="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item">
+                <img src="{% static './imgs/bg11.jpg' %}" alt="Slide 1" />
+              </div>
+              <div class="carousel-item">
+                <img src="{% static './imgs/bg11.jpg' %}" alt="Slide 2" />
+              </div>
+              <div class="carousel-item">
+                <img src="{% static './imgs/bg11.jpg' %}" alt="Slide 3" />
+              </div>
+            </div>
+            
+          </div>
+          <div class="main-index__hero__intro">
+            <div class="main-index__hero__intro__content">
+              <div class="main-index__hero__intro__title">
+                <h1 class="main-index__hero__intro__title-item">
+                  Bem-vindo ao Café Purrfection: <br />
+                  Transformando Seu Café em uma Experiência Isekai!<span></span>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="intro">
+      <div class="intro_container">
+        <div class="intro_content">
+          <div class="intro_text">
+            <div class="container_intro_text">
+              <p>
+                Imagine um lugar onde o aroma acolhedor do café recém-passado se
+                mistura harmoniosamente com a presença serena e encantadora dos
+                gatos. No Catcafé Purrfection, você encontra um refúgio
+                aconchegante no coração da cidade, um espaço onde o estresse do
+                dia a dia desaparece, dando lugar a momentos de pura
+                tranquilidade e alegria. Aqui, cada xícara de café é preparada
+                com carinho, utilizando os melhores grãos selecionados, para
+                proporcionar uma experiência sensorial única. Enquanto saboreia
+                nossas bebidas deliciosas, você pode se deleitar com a companhia
+                de nossos adoráveis anfitriões felinos, que tornam cada visita
+                uma experiência inesquecível. Os gatos do nosso café são
+                carinhosos e brincalhões, sempre prontos para receber carinho e
+                oferecer momentos de pura ternura.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="{% static './js/script.js' %}"></script>
+</html>

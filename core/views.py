@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.models import Product
-
+from django.shortcuts import render, get_object_or_404
 
 def index (request):
     data = {
@@ -31,9 +31,15 @@ def product (request):
     product = Product.objects.all()
 
     data = {
-        'products': product,
+        'product': product,
     }
+    
     return render(request, 'produtos.html', data)
+
+def single(request, id):
+    product = get_object_or_404(Product, id=id), # get_object_or_404(Products, id=id) -> Usado para recuperar um único objeto com base em um critério específico, como um ID único.
+    return render(request, 'single.html', {'product': product}) 
+
 
 def about (request):
         context = {

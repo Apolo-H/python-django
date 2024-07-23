@@ -4,126 +4,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <title>Document</title>
+    {% include './components/header.html' %}
   </head>
-
   <body>
-    <header class="header">
-      <div class="header_container">
-        <div class="header_content">
-          <div class="header_logo">
-            <img src="{% static 'imgs/neko.svg' %}" alt="" />
-            <a href="#">CatCafé Purrfection</a>
-          </div>
-          <nav class="header_links">
-            <ul class="links_container">
-              <ul class="link">
-                <li class="hyper">
-                  <a href="#">Products</a>
-                </li>
-                <li class="hyper">
-                  <a href="#">About</a>
-                </li>
-              </ul>
-              <li>
-                <a href="">
-                  <i class="whatsapp fa-brands fa-whatsapp"></i>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="instagram fa-brands fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="twitter fa-brands fa-x-twitter"></i>
-                </a>
-              </li>
-            </ul>
-            <div class="container-burgue">
-              <div class="bar"></div>
-              <div class="bar"></div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <section id="hero">
-      <div class="hero_container">
-        <div class="hero_content">
-          <div class="background_video">
-            <div class="background_video_container">
-              <video loop muted autoplay>
-                <source src="{% static 'imgs/bg.mp4' %}" type="" />
-              </video>
-            </div>
-          </div>
-          <div class="hero_intro_container">
-            <div class="hero_intro">
-              <h1>
-                Bem-vindo ao CatCafé Purrfection: <br />
-                Onde Cada Xícara de Café é Acompanhada por um Ronronar de
-                Amor<span></span>
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="container">
-      <section id="intro">
-        <div class="intro_container">
-          <div class="intro_content">
-            <div class="intro_text">
-              <div class="container_intro_text">
-                <p>
-                  Imagine um lugar onde o aroma acolhedor do café recém-passado
-                  se mistura harmoniosamente com a presença serena e encantadora
-                  dos gatos. No Catcafé Purrfection, você encontra um refúgio
-                  aconchegante no coração da cidade, um espaço onde o estresse
-                  do dia a dia desaparece, dando lugar a momentos de pura
-                  tranquilidade e alegria.
-                </p>
-                <p>
-                  Aqui, cada xícara de café é preparada com carinho, utilizando
-                  os melhores grãos selecionados, para proporcionar uma
-                  experiência sensorial única. Enquanto saboreia nossas bebidas
-                  deliciosas, você pode se deleitar com a companhia de nossos
-                  adoráveis anfitriões felinos, que tornam cada visita uma
-                  experiência inesquecível. Os gatos do nosso café são
-                  carinhosos e brincalhões, sempre prontos para receber carinho
-                  e oferecer momentos de pura ternura.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section id="produtos">
-        <div class="container_produtos">
-          <div class="produtos_content">
-            <div class="produtos_title">
-              <h1>Leve uma lembrança para casa</h1>
-            </div>
-
-
-          </div>
-        </div>
-      </section>
-
-    </div>
+    {% include './components/main__index.html' %}
+    
   </body>
   <script src="{% static 'js/script.js' %}"></script>
 </html>

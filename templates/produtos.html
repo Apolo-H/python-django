@@ -1,32 +1,22 @@
-
-
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<main>
+    
+<h1>{{product.pro_name}}</h1>
 
-<body>
+<h1>ola</h1>
 
 
-    <h2>
-        Python - Produtos
-    </h2>
-    <p>
-        {{ products }}
-    </p>
-    <hr>
-    {% for p in products %}
-    <p>
+<a href="{% url 'single' %}">ola</a>
 
-    </p>
-    {% endfor %}
-</body>
 
+
+</main>
 </html>
-
-
