@@ -36,9 +36,9 @@ def product (request):
     
     return render(request, 'produtos.html', data)
 
-def single(request, id):
+def produto_single(request, id):
     product = get_object_or_404(Product, id=id), # get_object_or_404(Products, id=id) -> Usado para recuperar um único objeto com base em um critério específico, como um ID único.
-    return render(request, 'single.html', {'product': product}) 
+    return render(request, 'produto_single.html', {'product': product}) 
 
 
 def about (request):

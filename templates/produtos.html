@@ -8,13 +8,14 @@
     <title>Document</title>
 </head>
 <main>
-    
-<h1>{{product.pro_name}}</h1>
+    {% for product in product %}
 
-<h1>ola</h1>
+<a href="{% url 'produto_single'  product.id %}"> Celular</a>
+
+{% endfor %}
 
 
-<a href="{% url 'single' %}">ola</a>
+
 
 
 
