@@ -1,9 +1,9 @@
 from django.db import models
 
 from django.db import models
-#slug
+
 from django.utils.text import slugify
-#format_html pra exibir a imagem em miniatura
+
 from django.utils.html import format_html
 
 
@@ -50,11 +50,50 @@ class Blog(models.Model):
         verbose_name_plural = "Blogs"
 
 
+
+    
+class Category(models.Model):
+    cat_name = models.CharField('Nome da Categoria', unique=True, max_length=255)
+    slug = models.SlugField(unique=True, blank=True, max_length=255)
+
+    #Criação do slug
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.cat_name)
+        super().save(*args, **kwargs)
+    
+    #Abaixo o slug possui a função de adicionar um sufixo caso já exista com o mesmo nome
+    '''
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.cat_name)
+            text_slug = base_slug
+            counter = 1
+            while Category.objects.filter(slug=text_slug).exists():
+                text_slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = text_slug
+        super().save(*args, **kwargs)
+    '''
+    #A função abaixo é para retornar o name do produto na exibição dentro do painel admin
+    def __str__(self):
+        return self.cat_name
+
+
+
 class Product (models.Model):
     name = models.CharField('Nome', max_length=100)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
     stock = models.IntegerField('Quantidade em Estoque')
-
+    pro_category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    image = models.ImageField('Imagem de Capa', upload_to='images/produto', blank=True, null=True)
 
     def __str__(self):
         return self.name
+    
+    
+    
+    
+
+
+

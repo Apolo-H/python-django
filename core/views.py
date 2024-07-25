@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import Product
+from core.models import Product, Blog
 from django.shortcuts import render, get_object_or_404
 
 def index (request):
@@ -47,4 +47,19 @@ def about (request):
         'languages': ['Python', 'Java', 'C#', 'JavaScript'],
     }
         return render(request, 'about.html', context)	
+
+
+def blog (request):
+    blog = Blog.objects.all()
+
+    data = {
+        'blog': blog,
+        'title': 'Blog Django'
+    }
+    
+    return render(request, 'blog.html', data)	
+
+def blog_single(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    return render(request, 'blog_single.html', {'blog': blog})
 
