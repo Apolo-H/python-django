@@ -1,0 +1,49 @@
+{% load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<header class="header">
+    <div class="header__content">
+        <div class="header__logo">
+            <img src="{% static 'imgs/neko.svg' %}" alt="" />
+            <a href="/">Café Purrfection</a>
+        </div>
+        <nav class="header__navegation">
+            <ul class="header__navegation-list">
+                <li class="header__navegation-item-text">
+                    <a href="{% url 'produtos' %}">Products</a>
+                </li>
+                <li class="header__navegation-item-text">
+                    <a href="{% url 'blog' %}">blog</a>
+                </li>
+                <li class="header__navegation-item-text">
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li class="header__navegation-item-icon">
+                    <a href="/">
+                        <i class="whatsapp fa-brands fa-whatsapp"></i>
+                    </a>
+                </li>
+                <li class="header__navegation-item-icon">
+                    <a href="/">
+                        <i class="instagram fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li class="header__navegation-item-icon">
+                    <a href="/">
+                        <i class="twitter fa-brands fa-x-twitter"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="header__hamburgue">
+                <div class="hamburgue__bar"></div>
+                <div class="hamburgue__bar"></div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+</html>
