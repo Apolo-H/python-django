@@ -1,9 +1,5 @@
 from django.db import models
-
-from django.db import models
-
 from django.utils.text import slugify
-
 from django.utils.html import format_html
 
 
@@ -16,12 +12,6 @@ class Blog(models.Model):
     # image = models.ImageField(upload_to='images/', default='images/default.jpg')
     slug = models.SlugField(unique=True, blank=True, max_length=255)
 
-    '''
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.blo_title)
-        super().save(*args, **kwargs)
-    '''
     #Abaixo o slug possui a função de adicionar um sufixo caso já exista com o mesmo nome
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -63,23 +53,9 @@ class Category(models.Model):
         super().save(*args, **kwargs)
     
     #Abaixo o slug possui a função de adicionar um sufixo caso já exista com o mesmo nome
-    '''
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.cat_name)
-            text_slug = base_slug
-            counter = 1
-            while Category.objects.filter(slug=text_slug).exists():
-                text_slug = f"{base_slug}-{counter}"
-                counter += 1
-            self.slug = text_slug
-        super().save(*args, **kwargs)
-    '''
     #A função abaixo é para retornar o name do produto na exibição dentro do painel admin
     def __str__(self):
         return self.cat_name
-
-
 
 class Product (models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -91,7 +67,16 @@ class Product (models.Model):
     def __str__(self):
         return self.name
     
-    
+
+class cafe (models.Model):
+    caf_name = models.CharField('Nome', max_length=100)
+    caf_price = models.DecimalField('preço', decimal_places=2, max_digits=8)
+    caf_estoque =  models.IntegerField('Quantidade em Estoque')
+    caf_category =  models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    caf_image = models.ImageField('Imagem de Capa', upload_to='images/cafes', blank=True, null=True)
+
+    def __str__(self):
+        return self.caf_name
     
     
 

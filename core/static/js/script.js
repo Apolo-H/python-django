@@ -37,7 +37,3 @@ function stopAutoSlide() {
 // Inicializa o carrossel
 showSlide(currentSlide);
 startAutoSlide();
-
-// Opcional: parar o carrossel automático quando o mouse estiver sobre o carrossel
-document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
-document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);

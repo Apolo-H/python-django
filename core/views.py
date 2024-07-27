@@ -63,3 +63,7 @@ def blog_single(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     return render(request, 'blog_single.html', {'blog': blog})
 
+def cafe(request, slug):
+    cafe = get_object_or_404(Blog, slug=slug)
+    return render(request, 'forms.html', {'cafe': cafe})
+
