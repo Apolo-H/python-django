@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import Product, Blog
+from core.models import Product, Blog, Tecnology, CategoryTecnology
 from django.shortcuts import render, get_object_or_404
 
 def index (request):
@@ -67,3 +67,16 @@ def cafe(request, slug):
     cafe = get_object_or_404(Blog, slug=slug)
     return render(request, 'forms.html', {'cafe': cafe})
 
+
+def tec (request):
+    tec = Tecnology.objects.all()
+    
+    data = {
+        'tec': tec,
+        'title': 'Blog Django'
+    }
+    return render(request, 'tecnologia_categoria.html', data)	
+
+def tec_single(request, slug):
+    tec_single = get_object_or_404(CategoryTecnology, slug=slug)
+    return render(request, 'tecnologia_single.html', {'tec': tec_single}),

@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% include '__header.html' %}
 </head>
+
 <body>
   <h1 class="produto__h1">Lista de Produtos</h1>
   <ul class="produto__ul">
     {% for product in product %}
     <li class="produto__li">
+      <a href="{% url 'produto_s' product.id %}">
       <div class="produto-img">
         <img src="{{ product.image.url }}">
       </div>
@@ -23,6 +25,7 @@
         <h2 class="produto__h2">{{ product.name }}</h2>
         <p class="produto__p-item">Preço: R$ {{ product.price }}</p>
         <p class="produto__p-item">Estoque: {{ product.stock }}</p>
+        </a>
     </li>
     </div>
     {% empty %}

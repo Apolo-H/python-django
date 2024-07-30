@@ -6,7 +6,7 @@ admin.site.site_title = "Título do Admin"
 admin.site.index_title = "Bem-vindo ao Admin"
 
 # Register your models here.
-from .models import Product, Blog, Category,cafe
+from .models import Product, Blog, Category,cafe, CategoryTecnology, Tecnology
 admin.site.register(Product)
 admin.site.register(cafe)
 
@@ -28,3 +28,13 @@ class Category(admin.ModelAdmin):
 
 
 
+
+@admin.register(CategoryTecnology)
+class CategoryTecnology(admin.ModelAdmin):
+    list_display = ['cattec_name']
+    search_fields = ['cattec_name']
+
+@admin.register(Tecnology)
+class Tecnology(admin.ModelAdmin):
+    list_display = ['tec_name', 'mini_image']
+    search_fields = ['tec_name']
