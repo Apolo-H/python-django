@@ -1,0 +1,2548 @@
+ 
+Projeto Web Django com SQLITE3
+
+ - Django é um Framework de Desenvolvimento Web em Python que inclui um ORM (Object-Relational Mapping), este facilita a interação com bancos de dados relacionais usando objetos Python. 
+
+ -  ORM (Object-Relational Mapping - "Mapeamento Objeto-Relacional") É uma técnica de programação que facilita a interação entre sistemas orientados a objetos e bancos de dados relacionais. Em vez de escrever consultas SQL diretamente, pode manipular os dados do banco de dados usando objetos da linguagem de programação.
+
+ - SQLite é um banco de dados SQL leve, autônomo, sem servidor e sem configuração, amplamente utilizado em aplicações web, dispositivos móveis e aplicativos de desktop. O Django suporta o SQLite por padrão, tornando-o uma escolha popular para desenvolvimento e prototipagem. Aqui estão algumas informações importantes sobre o uso do SQLite com Django:
+
+ - Características do SQLite: 
+	- Leve e Simples: Não requer configuração ou instalação de servidor.
+	- Autônomo: Armazena todos os dados em um único arquivo de banco de dados.
+	- Suporte Integrado: Django vem configurado para usar SQLite por padrão.
+	- Configuração do SQLite com Django
+ - O SQLite é o banco de dados padrão para novos projetos Django. Quando você cria um novo projeto, o Django configura automaticamente o SQLite. 
+
+=============================================
+
+1. Instalação do Python
+	- https://www.python.org/
+	- Após o download ser finalizado, abra-o e logo na primeira tela é importante marcar a checkbox Add Python 3.5 to PATH. Essa opção é importante para conseguirmos executar o Python dentro do Prompt de Comando do Windows.
+
+=============================================
+
+2. Testando o Python
+	Terminada a instalação, podemos testar se o Python foi instalado corretamente. Podemos abrir o Prompt de Comando e executar o seguinte comando:
+
+	--> (via cmd) python --version
+
+=============================================
+
+3. Instalação do PIP
+- PIP (Python Package Index) é um sistema de Gerenciamento de pacotes para Python
+
+- Documentação -> https://pip.pypa.io/en/latest/installation/#get-pip-py
+
+--> Se o seu ambiente Python não tiver o pip instalado, há 2 mecanismos para instalar o pip suportados diretamente pelos mantenedores do pip:
+	
+	- "ensurepip"
+	- "get-pip.py"
+
+
+
+	Abra o CMD/prompt ou terminal:
+
+	Para sistemas Windows: (comando para baixar o pip)
+
+		--> (via cmd) curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+		
+	O comando "curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py" é usado para baixar o script Python get-pip.py diretamente da URL https://bootstrap.pypa.io/get-pip.py e 				salvar localmente com o nome get-pip.py.
+
+
+	Comando para instalar o pip
+
+		--> (via cmd) python get-pip.py 
+
+	O comando "python get-pip.py" é utilizado para executar o script Python get-pip.py.
+
+
+
+CURL
+
+Explicação do comando:
+
+curl: 
+	É o comando utilizado para transferir dados de ou para um servidor, utilizando um dos protocolos suportados (como HTTP, HTTPS, FTP, etc.).
+
+https://bootstrap.pypa.io/get-pip.py: 
+	É o URL de onde o arquivo get-pip.py será baixado. Neste caso, ele está apontando para o servidor do projeto pip no domínio pypa.io, que é onde os scripts de instalação do pip são hospedados oficialmente.
+
+-o get-pip.py: 
+	É uma opção do curl que especifica onde o arquivo baixado deve ser salvo localmente. Neste caso, o arquivo será salvo no diretório atual com o nome get-pip.py.
+
+
+O curl (abreviação de "Client URL") é uma ferramenta poderosa e versátil para transferência de dados com URLs
+
+Exemplo simples de uso do curl para baixar um arquivo:
+	curl -O https://example.com/arquivo.txt
+
+
+Atualização do pip (via ambiente virtual em execução, para o Python 3)
+	- comando -> pip3 install --upgrade pip
+
+=============================================
+
+4. (OPCIONAL, Caso queira criar o ambiente virtual via virtualenv) virtualenv (pip install virtualvenv é o comando para instalar a ferramenta e não para criar o ambiente virtual)
+
+	O virtualenv é uma ferramenta em Python que permite criar ambientes virtuais isolados para gerenciar dependências de projetos.
+	Ao decorrer do curso iremos utilizar um ambiente virtualizado chamado virtualenv para construir os projetos da aula. Você pode instalar a virtualenv com o seguinte comando:
+
+		(Comando que permite instalar o virtualenv)
+		O comando pip install virtualenv é utilizado para instalar a ferramenta virtualenv através do pip, que é o gerenciador de pacotes do Python.
+
+
+	2 formas de instalação:
+	comandos:
+
+	- pip install virtualenv
+		-> instala globalmente o pacote virtualenv no sistema
+	
+
+	
+pip list
+
+O comando -> "pip list" Exibe as depedências instaladas
+
+	--> (via cmd) pip list
+
+versão do virtualenv
+	- python -m virtualenv --version
+		
+
+5. Criação do Projeto 
+	- Crie uma pasta para seu projeto 
+	- Abra o VSC, vincule a pasta do projeto ao vsc 
+
+=============================================
+
+6. Abra o cmd na pasta do projeto
+
+	Exemplo:
+	
+	D:\Python\Projeto_djanjo_2
+
+=============================================
+	
+7. Criação um ambiente Virtual
+
+	Abaixo será criado o ambiente virtual chamado "myenv"
+	
+	--> (via cmd) python -m venv myenv
+		
+	o "myenv" é o nome do ambiente
+
+	ou via virtualenv
+
+	--> (via cmd) virtualenv myenv
+ 
+
+Esse comando irá isolar os pacotes neste projeto. Foi criado com o comando acima o diretório "myenv" com as sub-pastas Lib e Scripts
+
+=============================================
+
+8. Ativar o myenv
+
+	--> (via cmd) myenv\Scripts\activate
+	
+Para desativá-lo execute o comando:
+	
+	--> (via cmd) deactivate
+
+Após executar o comando de ativação do venv irá abrir no terminal o ambiente virtual
+
+	Exemplo:
+	(myenv) C:\Users\nelci.mpjunior\OneDrive - SENAC - SP\Documentos\Python-2-Django\ProjetoDjango>
+
+=============================================
+
+9. Instalação do Django no myenv
+
+	Ao utilizar o comando "pip install django" para instalar o Django, o pip baixa e instala todos os pacotes necessários para o funcionamento do Django e suas dependências. 
+	No entanto, ele não cria arquivos diretamente relacionados ao seu projeto Django. 
+	A instalação do Django adiciona o pacote Django ao ambiente Python global ou virtual onde você está trabalhando.
+		No ambiente virtual -> 	myenv/site-packages/django
+
+
+	--> (via cmd) py -m pip install Django
+		O comando acima instala o Django em um ambiente virtual específico ou em uma versão específica do Python, se houver várias versões instaladas.
+
+	ou
+
+	--> (via cmd) pip install django
+		Aqui o pacote Django é instalado globalmente 
+
+
+Onde o Django é instalado
+
+		O Django foi instalado na pasta lib/site-packages/django
+
+=============================================
+
+10. Exibir as depedências instaladas
+	--> (via cmd) py -m pip freeze
+	
+Resultado 
+
+asgiref==3.8.1
+Django==5.0.7
+sqlparse==0.5.0
+tzdata==2024.1
+
+
+
+
+=============================================
+
+
+11. Boa prática, criar o arquivo requirements.txt para que seja salvo as dependências do projeto
+	--> (via cmd) py -m pip freeze > requirements.txt
+
+Após a execução do comando, verifique no projeto o arquivo criado
+
+=============================================
+
+
+12. Criação do Projeto Django - Será criado o projeto Django com o nome "setup"
+
+	Iniciar o projeto ( django-admin startproject setup . ) - Será criada uma pasta chamada "setup", dentro do projeto, com as configurações do mesmo.
+	
+	--> (via cmd) django-admin startproject setup . (Esse ponto é para não criar sub-pastas)
+
+Foi criado a pasta "setup" no projeto e o arquivo "manage.py"
+
+
+Arquivos do "setup"
+
+-  __init__.py  é um arquivo que serve para indicar que o diretório em que está contido deve ser tratado como um pacote. Se não tiver esse arquivo o diretório não é tratado como pacote e não será possível importar os módulos desse diretório
+
+- manage.py - manage indica "gerenciamento" - Esse arquivo é utilizado para realizar várias tarefas referentes ao gerenciamento da aplicação
+
+- _pycache_ - utilizado para armazenar dados da aplicação durante os processos de execução para melhor desempenho do projeto
+
+- settings.py - settings indica "configurações" - arquivo referente as configurações do projeto
+
+- asgi.py - O asgi.py é responsável por configurar a interface ASGI (Asynchronous Server Gateway Interface) para aplicações Django. Serve para a operação de aplicações Django com servidores assíncronos, permitindo que o Django lide com um maior número de conexões simultâneas e utilize funcionalidades modernas da web em tempo real, como chats ou notificações instantâneas.
+	
+	*** o ASGI (Asynchronous Server Gateway Interface) pode ser visto como uma evolução do WSGI (Web Server Gateway Interface)
+	*** WSGI: É um padrão síncrono, As requisições são processadas uma por vez.
+	*** ASGI: É assíncrono, permitindo que múltiplas requisições sejam processadas simultaneamente.
+
+- wsgi.py no Django é responsável por configurar a interface WSGI (Web Server Gateway Interface) para a aplicação. O WSGI é um padrão que define como um servidor web se comunica com aplicações web em Python. 
+
+- urls.py - Esse arquivo é responsável por definir as rotas (ou URLs) da aplicação.
+
+=============================================
+
+13. --> (via cmd) Django-admin help -> Visualizar todos os comando que podemos executar na ferramenta.
+
+=============================================
+
+14. Sobre o Arquivo mange.py (manage indica "gerenciamento")
+
+O arquivo manage.py é um script Python que vem com projetos Django. Ele é utilizado para realizar várias tarefas relacionadas à administração do projeto. O manage.py simplifica muitas operações comuns, permitindo que você interaja com o sistema do Django de forma mais fácil e eficiente.
+
+Algumas das tarefas comuns que você pode executar usando o manage.py incluem:
+
+Executar o servidor de desenvolvimento:
+	- python manage.py runserver
+
+Criar migrações e aplicar alterações ao banco de dados:
+	- python manage.py makemigrations
+	- python manage.py migrate
+
+Criar um superusuário para o admin do Django:
+	python manage.py createsuperuser
+
+Criar um aplicativo Django:
+Cria a estrutura inicial de um novo aplicativo Django.	
+	- python manage.py startapp nome_do_aplicativo
+
+	Em Django, um "aplicativo" (ou "app") refere-se a uma parte modular e autossuficiente de um projeto Django. Cada aplicativo é projetado para realizar uma função específica dentro do projeto maior.
+
+Executa os testes definidos em sua aplicação Django.
+	python manage.py test
+
+
+
+=============================================
+
+
+15. Executar o projeto
+	--> (via cmd) python manage.py runserver
+
+Copie a url do server gerada e cole no navegador
+
+	**** Atenção: A execução do Python no navegador é apenas uma tela do próprio Python, ainda não tem um template na aplicação com a tela inicial do projeto, será criado mais a frente.
+
+
+obs *** Problema de MIGRAÇÃO no Python 
+	Correção: python manage.py migrate
+
+
+=======================================================
+
+16. Alterar o TimeZone e o Idioma do projeto
+
+- As informações da página estão em Inglês e o TimeZone também não é o de São Paulo
+	- Abra a pasta setup e o arquivo settings.py e edite as linhas abaixo:
+
+	LANGUAGE_CODE = 'pt-br'
+
+	TIME_ZONE = 'America/Sao_Paulo'
+
+Pare o projeto no cmd -> ctrl + c 
+e Inicie novamente com o comando -> python manage.py runserver
+
+Pronto, atualize o navegador! E as informações estarão em Português!
+
+
+=============================================
+
+
+
+
+17. Criação de um app no Django
+	Um "app" no Django é como um módulo que adiciona funcionalidades específicas, como usuários ou blogs, ao seu projeto web. Cada app é independente, facilitando a organização e reuso do código.
+
+	Comando para criar app
+
+	--> (via cmd) python manage.py startapp core
+
+Ao criar o app, é criado um diretório no projeto com o nome do app
+
+
+
+Após a criação do App tem que inserí-lo no arquivo de settings.py na raiz do projeto como foi colocado abaixo o "core"
+
+projeto/setup/settings.py
+
+
+	INSTALLED_APPS = [
+    	'django.contrib.admin',
+    	'django.contrib.auth',
+    	'django.contrib.contenttypes',
+    	'django.contrib.sessions',
+    	'django.contrib.messages',
+    	'django.contrib.staticfiles',
+    	'core',
+	]
+
+
+
+Agora, No mesmo arquivo projeto/setup/settings.py informe o "templates" dentro de "DIRS" que será criado mais adiante
+
+
+projeto/setup/settings.py
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
+
+
+
+OBS: Templates é um diretório que será criado no qual possuirá as páginas HTML
+
+
+projeto/setup/settings.py
+
+#Quando o DEBUG For False o Django irá procurar o arquivo index.html, e aí tem que ter a permissão no ALLOWED_HOST
+# DEBUG = True -> Modo de Desenvolvimento
+# DEBUG = False -> Modo de Produção
+
+#DEBUG = True
+#ALLOWED_HOSTS = []
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
+
+
+
+Arquivos dentro do app "core"
+
+-  __init__.py  é um arquivo que serve para indicar que o diretório em que está contido deve ser tratado como um pacote. Se não tiver esse arquivo o diretório não é tratado como pacote e não será possível importar os módulos desse diretório
+
+- _pycache_ - utilizado para armazenar dados da aplicação durante os processos de execução para melhor desempenho do projeto
+
+
+- O diretório migrations é onde são armazenadas as migrações de banco de dados. 
+	*** As migrações são arquivos que contêm instruções para alterar a estrutura do banco de dados, como criar ou modificar tabelas e campos, as migrações são criadas pelo próprio python 	a partir dos "models"
+
+
+	1. Exemplo de model 
+
+	*************
+
+	from django.db import models
+
+	class Products (models.Model):
+    		name = models.CharField('Nome', max_length=100)
+    		price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
+    		stock = models.IntegerField('Quantidade em Estoque')
+
+	2. Após criar o model, deverá ser criado a migration via cmd com o comando
+
+		--> (via cmd)  python manage.py makemigrations
+
+	3. Exemplo de Migration Criada:
+
+		arquivo 0001_initial.py
+
+		from django.db import migrations, models
+
+
+		class Migration(migrations.Migration):
+
+		    initial = True
+
+		    dependencies = [
+    			]
+
+		    operations = [
+        		migrations.CreateModel(
+            		name='Products',
+            		fields=[
+                	('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                	('name', models.CharField(max_length=100, verbose_name='Nome')),
+                	('price', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Preço')),
+                	('stock', models.IntegerField(verbose_name='Quantidade em Estoque')),
+            		],
+        		),
+    		]
+
+
+- admin.py - O arquivo admin.py em um aplicativo Django é onde você registra modelos (models) para serem gerenciados através da interface administrativa do Django.
+
+- apps.py - O arquivo apps.py é usado para configurar a aplicação, por ex: "core" no projeto.
+	
+	Arquivo apps.py com o "core" configurado
+
+	*******
+	from django.apps import AppConfig
+
+	class CoreConfig(AppConfig):
+		default_auto_field = 'django.db.models.BigAutoField'
+    		name = 'core'
+
+
+- models.py - arquivo para criação dos models do app (configuração das tabelas do banco de dados)
+	Exemplo de model 
+
+	*************
+
+	from django.db import models
+
+	class Products (models.Model):
+    		name = models.CharField('Nome', max_length=100)
+    		price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
+    		stock = models.IntegerField('Quantidade em Estoque')
+
+- urls.py - Configuração das rotas -> Ex: www.projetodjango.com/contato
+
+- views.py - Configuração das funções de views do Projeto
+	Exemplo de Views 
+
+
+	from django.shortcuts import render
+
+	# Create your views here.
+	# Funções com as Rotas 
+	# - Função index faz a requisição no arquivo index.html
+	# - Função contato faz a requisição no arquivo contato.html
+
+	def index (request):
+    		context = {
+        	'curso' : 'Programação Web com Django'
+    		}
+    		return render(request, 'index.html', context)
+
+
+	def contato (request):
+    		return render(request, 'contato.html')	
+
+
+- tests.py - utilizado para escrever testes automatizados
+=======================================
+
+
+18. Criação do diretório Templates na raiz do projeto
+
+	Crie os arquivos 
+	- index.html (Crie a codificação inicial do html no projeto com a tag <h2> index, Home - Python </h2>)
+	- contato.html (Crie a codificação inicial do htmo no projeto com a tag <h2> contato - Python </h2>) 
+
+dentro de templates
+
+
+=======================================
+
+
+
+19. Edição do arquivo views.py em core -> core/views.py
+
+	*******
+
+from django.shortcuts import render
+
+# Create your views here.
+# São funções para as rotas
+
+def index (request):
+    return render(request, 'index.html')
+
+def contato (request):
+    return render(request, 'contato.html')
+
+
+
+
+=======================================
+
+=======================================
+
+
+20. Edição das Rotas no arquivo urls.py dentro de setup
+
+	- projeto/setup/urls.py
+
+
+(...)
+
+
+
+from django.contrib import admin
+from django.urls import path, include
+#foi feito o importe do "include" acima
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('core.urls')),
+]
+
+# o código "path('', include('core.urls'))," é que qualquer solicitação na raiz do projeto seja redirecionada para o core.urls
+
+
+==========================================
+
+==========================================
+
+21. Crie o arquivo urls.py dentro de core
+
+	core/urls.py
+
+*******
+
+
+from django.urls import path
+#foi feito o importe do include acima
+
+#import das views index e contato criadas no core/views
+from core.views import index, contato
+
+urlpatterns = [
+    path('', index),
+    path('contato', contato),
+]
+
+# acima o "path('', index)" indica que quando acessar a raiz do site será chamado a view index
+# o "path('contato', contato)" indica que quando acessar a rota contato será chamado a view contato
+
+
+=========================================
+
+
+=========================================
+
+22. Execute o projeto
+
+	- via cmd, acesse a pasta do projeto
+	--> (via cmd) myenv\Scripts\activate
+	--> (via cmd) python manage.py runserver
+
+obs: "venv" é o nome do ambiente virtual
+
+Versão do Django -> python -m django --version
+
+	-->>  (via cmd) python manage.py makemigrations
+
+	-->> (via cmd) python manage.py migrate
+
+=========================================
+
+
+Resumo da Aplicação:
+
+setup
+	-> setup é o nome do projeto criado no Django com o comando "django-admin startproject setup ." (Esse ponto é para não criar sub-pastas)
+
+setup/settings.py
+	-> Nesse arquivo foram feitas várias configurações como: DEBUG, DIRS "templates", TIME_ZONE, STATIC_URL
+
+setup/urls.py
+	-> Nesse arquivo foram feitas configurações para as rotas tanto do admin quanto para o site através dos path abaixo "path('admin/', admin.site.urls)" e "path('', include('core.urls'))"
+
+	******
+
+	from django.contrib import admin
+	from django.urls import path, include
+	#foi feito o importe do include acima
+
+	#import das views, função index e contato criadas no core/views
+	from core.views import index, contato
+
+	urlpatterns = [
+    		path('admin/', admin.site.urls),
+    		path('', include('core.urls')),
+	]
+
+	obs: o path "path('', include('core.urls'))" com o core.urls (Este não foi criado pela ferramenta, foi criado para receber as rotas e manter o sistema melhor organizado)
+
+
+
+templates
+	-> Diretório criado para receber os arquivos html
+
+
+core
+	-> Foi o aplicativo instalado com o comando "python manage.py startapp core"	
+
+
+core/views.js
+	-> Foram criadas as views, funções com as rotas
+
+	****
+
+	from django.shortcuts import render
+
+	# Funções com as Rotas 
+	# - Função index faz a requisição no arquivo index.html
+	# - Função contato faz a requisição no arquivo contato.html
+	
+	def index (request):
+    		return render(request, 'index.html')
+
+	def contato (request):
+    		return render(request, 'contato.html')
+
+
+
+core/urls.js
+	*****
+
+	from django.urls import path, include
+	#foi feito o importe do include acima
+
+	#import das views index e contato criadas no core/views
+	from core.views import index, contato
+	#Rota na url 
+	# - Quando acessar a rota "raiz do site" ele chama a função index
+	# - Quando acessar a rota "contato" ele chama a função contato
+
+	urlpatterns = [
+    		path('', index),
+    		path('contato', contato),
+	]
+
+
+
+=========================================
+
+=============================================
+
+PADRÃO MTV DO DJANGO
+
+O "padrão MTV" no contexto do Django refere-se à estrutura de organização de código que o framework utiliza para desenvolvimento web. MTV é um acrônimo que significa Model-Template-View, que é a versão do Django do padrão MVC (Model-View-Controller).
+
+Aqui está o significado de cada parte do padrão MTV no Django:
+
+Model (Modelo): Representa a estrutura de dados. Em Django, os modelos são classes Python que definem os tipos de dados e a estrutura do banco de dados. Cada modelo geralmente corresponde a uma tabela no banco de dados relacional.
+
+Template (Template): É a camada responsável pela apresentação visual dos dados. Os templates em Django são arquivos HTML que incluem variáveis e tags especiais que permitem a incorporação de dados dinâmicos gerados pelas views.
+
+View (Visão): É a camada que processa as requisições do usuário e retorna as respostas. As views em Django são funções ou classes Python que recebem uma requisição HTTP e retornam uma resposta HTTP, geralmente após realizar algum processamento dos dados do modelo e renderizar um template.
+
+
+Comparação entre MVC e MTV
+
+Ambos possuem componentes que correspondem a partes semelhantes de uma aplicação:
+
+Model: Representa a estrutura de dados e a lógica de negócios.
+View/Template: Responsável pela apresentação visual dos dados.
+Controller/View: Lida com a lógica de processamento e interação.
+
+
+=============================================
+
+
+
+
+23. Passando um contexto para o templates via views 
+
+#MODO 1
+
+- core/views.py
+
+	******
+
+	from django.shortcuts import render
+
+	# Create your views here.
+	# Funções com as Rotas 
+	# - Função index faz a requisição no arquivo index.html
+	# - Função contato faz a requisição no arquivo contato.html
+	
+	def index (request):
+    		context = {
+        	'curso' : 'Programação Web com Django'
+    	}
+    	return render(request, 'index.html', context)
+
+	def contato (request):
+    		return render(request, 'contato.html')
+
+
+
+- templates/index.html
+
+	<body>
+    		<h2>
+        		Index, Home - Python
+    		</h2>
+
+    		<p>
+        		{{curso}}
+    		</p>
+
+	</body>
+
+
+
+
+
+
+#MODO 2
+
+
+- core/views.py
+
+
+from django.shortcuts import render
+
+# Create your views here.
+
+def index (request):
+    context = {
+        'courses': 'Programação de Computadores no SENAC GUA',
+        'languages': ['Python', 'Java', 'C#', 'JavaScript'],
+        'news': [
+            {
+                'title': 'Nova versão do Django lançada!',
+                'subtitle': 'Confira as novidades da versão 3.0',
+                'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero ut imperdiet vehicula.'
+            },
+            {
+                'title': 'Python é a linguagem do futuro',
+                'subtitle': 'Especialistas afirmam que Python está dominando o mercado',
+                'text': 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
+            },
+            {
+                'title': 'JavaScript: O que esperar do ES10?',
+                'subtitle': 'Novas funcionalidades e melhorias na performance',
+                'text': 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'
+            }
+        ]
+    }
+    return render(request, 'index.html', context)
+
+
+
+def contato (request):
+    return render(request, 'contato.html')
+
+
+
+
+- templates/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>
+        Home - Django
+    </h1>
+
+    <hr>
+
+    <h2>{{ courses }}</h2>
+
+    <hr>
+
+    <h2>Linguagens de Programação</h2>
+    {{ languages }}
+    <hr>
+    1 valor da Lista: <b> {{ languages.2 }} </b>
+    <hr>
+    <ul>
+        {% for language in languages %}
+        <li>{{ language }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>Notícias</h2>
+    {{ news }}
+    <hr>
+    {% for new in news %}
+    <div class="noticia">
+        <h3>{{ new.title }}</h3>
+        <h4>{{ new.subtitle }}</h4>
+        <p>{{ new.text }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
+
+
+
+
+
+=========================================
+
+
+
+24. Arquivos estáticos no Django
+
+	setup/settings -> no final deste arquivo tem o link da documentação e a Constante dos arquivos estáticos
+	
+	# Static files (CSS, JavaScript, Images)
+	# https://docs.djangoproject.com/en/5.0/howto/static-files/
+
+	#STATIC_URL = 'static/' é usado no Modo de Desenvolvimento
+	STATIC_URL = 'static/'
+
+	#No modo de Produção é usado a constante abaixo "STATIC_ROOT"
+	#Produção ou Desenvolvimento -> Vai depender do DEBUG
+	#Criação da Constante STATIC_ROOT (Não vem no framework, tem que criar)
+
+	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+	#OBS: importe o path e o os no início do arquivo
+	#from pathlib import Path, os
+
+------------------------------
+
+
+Criação do diretório static
+
+- Clique com o botão direito do mouse sobre "core" -> new folder e crie o diretório "static"
+
+- Dentro de "static" crie os diretório e os arquivos
+	- css
+		-> styles.css
+	- js
+	- images
+
+=================================================
+
+25. Importe os arquivos estáticos para as páginas html dentro de "templates"
+
+OBS: É Necessário inserir o carregamento de arquivos estátivos no início do arquivo html
+
+	-> {% load static %}
+
+template/index.html
+
+*************
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h2>
+        Index, Home - Python
+    </h2>
+
+    <p>
+        {{curso}}
+    </p>
+</body>
+</html>
+
+
+**************
+
+static/css/styles.css
+
+
+body {
+    background-color: #ccc;
+}
+
+
+
+Teste o projeto
+
+
+
+
+
+
+
+Criação de um links no menu
+
+
+Crie o arquivo menu.html dentro de templates
+
+OBS: Crie o menu de acordo com as páginas do Site
+
+templates/menu.html
+**************
+
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contato">Contato</a></li>
+        <li><a href="/mercado">Mercado</a></li>
+        <li><a href="/produtos">Produtos</a></li>
+    </ul>
+</nav>
+
+----------------------------------------------------------------------------
+
+
+Para inserir o menu dentro das páginas html utilize o comando "include"
+
+	 {% include 'menu.html' %}
+
+Codificação de página com o "include" do menu
+
+
+templates/contato.html
+**************
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    {% include 'menu.html' %}
+
+    <h2>
+        Contato - Django
+    </h2>
+
+    <p> {{ phone }}</p>
+
+    <img src="{% static 'images/coffee-1.jpg' %}" alt="Coffee"> 
+
+</body>
+
+</html>
+
+
+
+
+==========================================
+
+26. Inserção de Imagens no Projeto
+
+	
+Insira a imagem dentro da pasta static/images
+
+	tag html com a imagem    ->   <img src="{% static 'images/guitar.jpg' %}" alt="Guitar"> 
+
+
+==========================================
+
+27. Inserção de arquivo Javascript no Projeto
+
+	- Crie o arquivo static/js/scripts.js
+
+Faça a conexão do templates/index.html com o js
+	
+	-> <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+	
+Crie a função no arquivo de "scripts.js"
+
+	function f_teste(){
+    		alert("Teste de Conexão com o Javascript")
+	}
+
+
+Crie o botão com onclick no html para chamar a função em Javascript
+
+	templates/index.html
+
+	<button onclick="f_teste()"> Função JS </button>
+
+=============================================
+
+
+
+templates/index.html
+
+************
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <h2>
+        Index, Home - Python
+    </h2>
+
+    <p>
+        {{curso}}
+    </p>
+
+    <img src="{% static 'images/guitar.jpg' %}" alt="Guitar">
+
+    <hr/>
+    <button onclick="f_teste()"> Função JS </button>
+
+</body>
+
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+</html>
+
+
+=============================================
+
+
+28 - models
+
+Documentação -> https://docs.djangoproject.com/en/5.0/topics/db/models/
+
+** OBS: O Python possui o próprio banco de dados (db.sqlite3), está configurado no arquivo "setup/settings"
+
+		(....)
+		DATABASES = {
+    			'default': {
+        		'ENGINE': 'django.db.backends.sqlite3',
+        		'NAME': BASE_DIR / 'db.sqlite3',
+    			}
+		}
+		(...)
+
+----------------
+
+Criação do model "Product"
+
+core/models
+
+******
+
+from django.db import models
+
+# Create your models here.
+
+#O label 'Nome do Produto' é usado para fornecer um nome amigável para o campo pro_name do modelo em Django, em um Formulário será exibido esse  Label   
+#A função __str__(self) é um método especial em Python que define a representação em string de uma instância de um objeto. Quando você imprime um objeto ou converte um objeto para uma string, o método __str__ é chamado para fornecer uma representação legível e útil.
+#A classe Meta em um modelo Django é usada para fornecer informações adicionais sobre o modelo - "Verbose Name" Exibe um nome mais legível no singular e "verbose_name_plural" exibe o nome no plural
+
+class Product(models.Model):
+    pro_name = models.CharField('Nome do Produto', max_length=100, unique=True) # a chave "unique=True" não permitirá cadastrar 2 valores iguais
+    pro_price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
+    pro_stock = models.IntegerField('Quantidade em Estoque', null=True, blank=True) # null=True Permite campo vazio na tabela e blank=True permite que o registro no input não seja obrigatório
+    pro_category = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, null=True)
+
+    #A função abaixo é para retornar o name do produto na exibição dentro do painel admin
+    def __str__(self):
+        return f"{self.pro_name} - {self.pro_category}"
+        #return self.pro_name    
+
+    class Meta:
+        verbose_name = "Produto"
+        verbose_name_plural = "Produtos"
+
+
+Após criar o model, deverá ser criado a migration via cmd com o comando
+
+-->>  (via cmd) python manage.py makemigrations
+
+
+Se for executado corretamente aparecerá a seguinte mensagem no cmd:
+
+Migrations for 'core':
+  core\migrations\0001_initial.py
+    - Create model Products
+
+
+
+Foi criado dentro de core/migrations o arquivo "0001_initial.py", essa é a migration com o name Produtcts
+
+Após criar a migrate, deverá ser executada a migrate com o comando:
+
+-->> (via cmd) python manage.py migrate
+
+
+obs:  o atributo "CharFied" para texto é equivalente ao varchar no banco de dados e possui obrigatóriamente a referencia de max_lenght.
+	Em caso de precisar de um número de caracteres maior deve ser usado o atributo "models.TextField()"
+	Ex: description = models.TextField()
+
+
+
+=================================================
+
+29  - dbbrowser
+
+	https://sqlitebrowser.org/dl/
+
+Ao instalar o dbbrowser será possível visual o banco de dados do python -> Execute a instalação do dbbrowser, após abra o bando de dados sqlite da aplicação python via dbbrowser -> botão direito do mouse sobre o banco -> abrir com dbbrowser
+
+
+
+OBS: Sempre que criar um novo model, execute o comando para criar a migrate e o comando para executar a migration
+
+
+=================================================
+
+
+30. Painel admin do Django
+
+- Acesse a url:	http://127.0.0.1:8000/admin
+
+=================================================
+
+31. Criação do Usuário para acesso ao painel administrativo
+
+	(Pare o projeto ctrl + c se o mesmo estiver executando para criar o super usuário)
+
+	- python manage.py createsuperuser
+
+
+	O sistema irá solicitar as informações do novo usuário:
+
+	Usuário (Se não colocar usuário, ele usará o usuário padrão do seu projeto): nelci (nelci é o usuário do professor)
+	E-mail (Pode ser qualquer e-mail, não tem validação): nelcijunior@yahoo.com.br (nelcijunior@yahoo.com.br é o e-mail do professor)
+	Password (A senha não é exibida a digitação):
+	Confirmação de Senha(A senha não é exibida a digitação):
+
+
+Após a criação do usuário o sistema irá exibir a mensagem: "Superuser created successfully."
+	
+
+	Execute o projeto novamente e acesse a url do admin
+
+	- (via cmd) python manage.py runserver
+
+	- http://127.0.0.1:8000/admin
+
+	user:
+	pass:
+
+
+-->> BEM VINDO A TELA DE ADMINISTRAÇÃO DO SISTEMA DJANGO
+
+OBS: Essa tela de admin existe por conta do arquivo de configuração "projeto/settings.py" está carregado os módulos referentes ao admin, validação de usuário e sessão...
+
+
+	INSTALLED_APPS = [
+    	'django.contrib.admin',
+    	'django.contrib.auth',
+    	'django.contrib.contenttypes',
+    	'django.contrib.sessions',
+    	'django.contrib.messages',
+    	'django.contrib.staticfiles',
+    	'core',
+	]
+
+
+=========================================================
+
+32. Inserindo o model criado no projeto ao admin do Django
+
+Edite o arquivo "admin.py" dentro de "core" para ser vinculado ao admin do Django
+
+	core/admin.py
+	*******
+
+	from django.contrib import admin
+
+	# Register your models here.
+
+	from .models import Products
+
+	admin.site.register(Products)
+
+
+
+
+	Execute o Projeto 
+
+	-->> (via cmd) python manage.py runserver
+
+
+=================================
+
+33. Interação com o "BANCO DE DADOS" -> SQLITE3
+
+	-> python manage.py shell
+
+	-> from core.models import Products
+
+	-> product = Products.objects.all()
+
+	-> for prod in product:
+
+	-> (TABULAÇÃO)	print(prod)
+	(Enter 2 vezes)
+
+
+Count (retorna a quantidade de registros)
+
+	-> Products.objects.count()
+
+first (retorna o primeiro item encontrado)
+
+	-> Products.objects.first()
+
+last (retorna o último item encontrado)
+
+	-> Products.objects.first()
+
+filter (retorna um ítem específico)
+	
+	-> Products.objects.filter(id=1)
+
+
+=================================
+
+34. Criação da View "produtos", edição do arquivo "core/url" e edição do "templates/_menu.html"
+
+-->>> Crie o template "produtos" --> "templates/produtos.html" 
+-->>> Crie a view "produtos" em "core/views" 
+
+core/views.py
+
+importe o models Products em views (no começo do arquivo)
+
+
+	-> from core.models import Products
+
+
+Arquivo completo
+core/views.py
+
+********
+
+
+from django.shortcuts import render
+from core.models import Products
+
+
+(... codificação das outras views)
+
+
+def produtos(request):
+    product = Product.objects.all() # Products.objects.all() -> Usado para recuperar todos os objetos de um modelo (Dados de uma tabela).
+
+    data = {
+        'product': product,
+    }
+    return render(request, 'produtos.html', data)
+
+
+
+-------------------------------
+
+
+---> Edite o arquivo "core/urls"
+
+Arquivo Completo
+"core/urls"
+********
+
+from django.urls import path, include
+#foi feito o importe do include acima
+
+#import das views index e contato criadas no core/views
+from core.views import index, contato, produtos
+#Rota na url 
+# - Quando acessar a rota "raiz do site" ele chama a função index
+# - Quando acessar a rota "contato" ele chama a função contato
+
+
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('contato', contato, name='contato'),
+    path('produtos', produtos, name='produtos'),
+    path('produto/<int:id>/', produto_single, name='produto_single'),
+]
+
+
+-------------------------------
+
+edite o arquivo "templates/_menu.html" com esse novo menu
+
+<nav>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li> <a href="{% url 'produtos' %}"> Produtos </a></li>
+        <li> <a href="{% url 'contato' %}"> Contato </a></li>
+    </ul>
+</nav>
+
+
+
+
+
+===================================
+
+
+35. Exibindo os dados no "templates/produtos.html"
+
+templates/produtos.html
+*******
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    {% include 'menu.html' %}
+
+    <h2>
+        Python - Produtos
+    </h2>
+    <p>
+        {{ products }}
+    </p>
+    <hr>
+    {% for p in products %}
+   	<p>
+		{{ p }} {{ p.price }}
+	</p>
+    {% endfor %}
+</body>
+
+</html>
+
+
+
+
+==========================================
+
+
+
+Git HUB 
+
+1. Crie uma conta no GIT HUB
+
+2. Crie um Repositório no Git Hub
+
+3. Acesse A pasta do projeto Django em seu computador com o botão direito sobre ela -> Git Bash Here
+
+Iniciar o Git
+	git init
+
+Configurar Nome de Usuário
+	git config --global user.name “CarlTM-W”​
+
+Configurar E-mail
+	git config --global user.email “professornelcimariano@gmail.com”
+
+Verificar e-mail de usuário (Escreva o comando no git pois ele pode não reconhecer ao copiar e colar)
+	git config user.email​
+
+	git config user.name
+
+Ver status dos arquivos
+	git status
+
+
+Vincular repositório local com um repositório remoto​
+	git remote add origin + (url do repositósio no GitHub) https://github.com/professornelcimariano/projeto_aula_git.git​
+
+	git remote add origin https://github.com/professornelcimariano/projeto_django2.git
+
+Exibe as conexões com o github
+	git remote -v
+
+Exibe os status dos arquivos com o Git
+	git status
+
+
+***** (ATENÇÃO) Em caso de error -> remova o Origin
+	git remote remove origin
+
+Crie o arquivo .gitignore para que arquivos específicos não sejam enviados para o git
+	.gitignore
+
+ENVIAR OS ARQUIVOS PARA O GIT E GITHUB
+
+Adicionar arquivos na zona intermediária
+	git add .
+
+
+Commit
+	git commit -m "comentário qualquer"​
+
+	git commit -m "1º Commit do Projeto"
+
+
+
+Enviar arquivos para o GitHub
+	git push -u origin master
+ou
+	git push -u origin main
+
+
+Faça uma alteração em um arquivo do projeto, salve e execute o comando git diff
+Exibir alterações no arquivo
+	git diff​
+		Para sair do comando git diff, pode pressionar Q maiúsculo
+
+
+
+
+
+		
+
+==========================================
+
+
+36. Crie o template produto_single.html 
+
+"template/produto_single.html"
+
+
+
+
+==========================================
+37. Crie a View "produto_single"
+
+views -> produto_single
+
+importe o "get_object_or_404" no início do arquivo de view
+
+from django.shortcuts import render, get_object_or_404
+
+
+def produto_single(request, id):
+    product = get_object_or_404(Products, id=id) # get_object_or_404(Products, id=id) -> Usado para recuperar um único objeto com base em um critério específico, como um ID único.
+    return render(request, 'produto_single.html', {'product': product})  
+
+
+
+
+
+=================================================
+
+38. Edite o arquivo de urls.py
+
+"core/urls.py"
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('contato', contato, name='contato'),
+    path('produtos', produtos, name='produtos'),
+    path('produto/<int:id>/', produto_single, name='produto_single'),
+]
+
+
+
+--------------------
+
+
+Edite o "template/produtos.html" para exibir o link do produto
+
+
+
+{% for p in product %}
+<p>
+    <a href="{% url 'produto_single' p.id %}">{{ p }}</a>
+</p>
+{% endfor %}
+
+
+---------------------
+
+Edite o "template/produto_single.html"
+
+<h2>
+    {{ product.pro_name }}
+</h2>
+
+<p>
+    R$ {{ product.pro_price|floatformat:2 }}
+</p>
+
+<p>
+    Estoque: {{ product.pro_stock }}
+</p>
+
+<p>
+    Categoria: {{ product.pro_category }}
+</p>
+
+
+
+
+
+==================================================
+
+39. Instalação do Bootstrap via cdn
+
+1. Acesse a documentação do Bootstrap e faça download da versão "Compiled CSS and JS" 
+
+2. Coloque a pasta do bootstrap dentro de "core/static"
+
+3. Faça a conexão do css e js nos arquivos de Template
+
+	Ex:
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+
+    {% include 'menu.html' %}
+
+    <h1>
+        Home - Django
+    </h1>
+
+
+
+</body>
+
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+
+
+</html>
+
+
+
+Teste de conexão com o bootsrap
+Insira a codificação abaixo dentro de um template html
+
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        Bem-vindo ao Meu Projeto
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Título do Card</h5>
+                        <p class="card-text">Exemplo de card usando classes do Bootstrap no Django.</p>
+                        <a href="#" class="btn btn-primary">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+==================================================
+
+40. Instalação do Bootstrap via pip - OBS: Utilize "via pip" ou "via cdn" (39)
+
+instalar o Bootstrap via pip
+
+	pip install django-bootstrap5
+
+remover
+
+	pip uninstall django-bootstrap5
+
+
+setup/settings
+
+INSTALLED_APPS = [
+    ...
+    'django_bootstrap5',
+    ...
+]
+
+
+
+Exemplo de conexão do css e js em um template html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Projeto</title>
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+
+</head>
+<body>
+    
+
+
+
+    {% bootstrap_javascript %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+=========================================
+
+41. Criação do "MENU" em Python com o bootstrap
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'produtos' %}">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contato' %}">Contato</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+===============================================
+
+42. Inserção do Caroussel
+
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/banner_1_1800x1280.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/banner_2_1800x1280.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/banner_3_1800x1280.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+==================================================
+
+43. Instalação do Pillow
+
+O Django, por padrão, usa o Pillow para manipulação de imagens. Quando você define um campo "ImageField" em um modelo, o Django espera que o Pillow esteja instalado para lidar com a validação e processamento das imagens.
+
+1. Ative seu ambiente virtual
+
+2. -->> (via cmd) python -m pip install pillow
+
+3. No seu arquivo settings.py, adicione ou verifique as seguintes configurações:
+
+	
+
+	#Configuração para cadastro de imagens na raiz do projeto
+	#opção 1
+
+	MEDIA_URL = '/media/'
+	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+	
+
+	#Configuração para cadastro de imagens na raiz do projeto
+	#opção 2
+	'''
+	MEDIA_URL = '/media/'
+	MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static')
+	'''
+
+OBS: No Django, "MEDIA_URL" e "MEDIA_ROOT" são configurações usadas para gerenciar arquivos de mídia, como imagens e documentos, que os usuários fazem upload para o seu site.
+
+MEDIA_URL: Define a URL base através da qual os arquivos de mídia podem ser acessados no navegador. No seu exemplo, MEDIA_URL = '/media/' significa que os arquivos de mídia podem ser acessados através de URLs que começam com /media/. Por exemplo, se um arquivo chamado image.jpg for carregado, ele pode ser acessado via http://example.com/media/image.jpg.
+
+MEDIA_ROOT: Define o caminho absoluto no sistema de arquivos onde os arquivos de mídia serão armazenados. No seu exemplo, MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static') define o diretório no sistema de arquivos onde os arquivos de mídia são armazenados. O BASE_DIR é a raiz do seu projeto Django, então MEDIA_ROOT está apontando para um diretório chamado static dentro de um diretório core.
+
+4. No arquivo "urls.py" principal do projeto, adicione as seguintes linhas para servir arquivos de mídia durante o desenvolvimento:
+
+
+	from django.conf import settings
+	from django.conf.urls.static import static
+
+	#import das views, função index e contato criadas no core/views
+	from core.views import index, contato
+
+	urlpatterns = [
+    		path('admin/', admin.site.urls),
+    		path('', include('core.urls')),
+	] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+	#Configuração acima para cadastro de imagens -> + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+5. Use o campo ImageField nos seus modelos para carregar e processar imagens
+
+	Exemplo:
+
+	from django.db import models
+
+	class MyModel(models.Model):
+    		name = models.CharField(max_length=100)
+    		image = models.ImageField(upload_to='images/')
+
+
+===================================
+
+BLOG
+
+44. 	- Criação dos Templates "blogs.html" e "blog_single.html" 
+	- Criação do Model Blog com url amigável (slug)
+	- Edição do "core/admin.py" com o blog
+	- Edição do "core/urls.py"
+ 
+"core/models"
+
+importe o slug no início do arquivo de models e crie a class Blog
+
+
+*******
+
+from django.db import models
+#slug
+from django.utils.text import slugify
+#format_html pra exibir a imagem em miniatura
+from django.utils.html import format_html
+
+
+class Blog(models.Model):
+    blo_title = models.CharField('Título', max_length=100)
+    blo_subtitle = models.CharField('Sub-Título', max_length=100, blank=True, null=True)
+    # blo_description = models.TextField('Texto do Blog')
+    blo_description = HTMLField('Texto do Blog')
+    blo_image = models.ImageField('Imagem de Capa', upload_to='images/blog', blank=True, null=True)
+    # image = models.ImageField(upload_to='images/', default='images/default.jpg')
+    slug = models.SlugField(unique=True, blank=True, max_length=255)
+
+    '''
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.blo_title)
+        super().save(*args, **kwargs)
+    '''
+    #Abaixo o slug possui a função de adicionar um sufixo caso já exista com o mesmo nome
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.blo_title)
+            slug = base_slug
+            counter = 1
+            while Blog.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+    
+    #mini_image para retornar a imagem em miniatura no painel admin
+    def mini_image(self):
+        if self.blo_image:
+            return format_html('<img src="{}" style="height: 100px; width: auto;" />', self.blo_image.url)
+        return " "
+    mini_image.short_description = 'Imagem de Capa'
+
+    #A função abaixo é para retornar o name do produto na exibição dentro do painel admin
+    def __str__(self):
+       return self.blo_title
+
+    class Meta:
+        verbose_name = "Blog"
+        verbose_name_plural = "Blogs"
+
+
+
+--------------------------------------------
+
+
+	-->>  (via cmd) python manage.py makemigrations
+
+	-->> (via cmd) python manage.py migrate
+
+	--> (via cmd) python manage.py runserver
+
+
+
+--------------------------------------------
+
+
+**********
+"core/admin.py"
+
+from django.contrib import admin
+
+# Register your models here.
+from .models import Product, Blog
+
+admin.site.register(Product)
+
+
+#admin.site.register(Blog)
+@admin.register(Blog)
+class Blog(admin.ModelAdmin):
+    #form = BlogAdminForm # Estilização do Form Blog do Admin
+    list_display = ['mini_image', 'blo_title']
+    search_fields = ['blo_title']
+
+
+
+--------------------------------------------
+
+*************
+
+"core/urls.py"
+
+from django.urls import path, include
+#foi feito o importe do include acima
+
+#import das views index e contato criadas no core/views
+from core.views import index, contato, produtos, produto_single, blogs, blog_single
+#Rota na url 
+# - Quando acessar a rota "raiz do site" ele chama a função index
+# - Quando acessar a rota "contato" ele chama a função contato
+# - O atributo name é para ser possível chamar o link com o "url" Ex: <li><a href="{% url 'index' %}">Home</a></li>
+urlpatterns = [
+    path('', index, name='index'),
+    path('contato', contato, name='contato'),
+    path('produtos', produtos, name='produtos'),
+    path('produto/<int:id>/', produto_single, name='produto_single'),
+    path('blogs', blogs, name='blogs'),
+    path('blog/<slug:slug>/', blog_single, name='blog_single'),
+]
+
+
+--------------------------------------------
+
+**************
+
+"core/views.py"
+
+from django.shortcuts import render, get_object_or_404
+from core.models import Product, Blog
+
+(... codificação das outras views)
+
+
+def blogs(request):
+    blog = Blog.objects.all()
+
+    data = {
+        'blog': blog,
+        'title': 'Blog Django'
+    }
+    return render(request, 'blogs.html', data)
+
+
+#Página single do blog com slug, url amigável
+def blog_single(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    return render(request, 'blog_single.html', {'blog': blog})
+
+
+--------------------------------------------
+
+**************
+
+trecho de código do blogs.html
+
+
+<p>
+    <!-- {{ blog }} -->
+</p>
+
+{% for b in blog %}
+<p>
+    <a href="{% url 'blog_single' b.slug %}">{{ b }}</a>
+</p>
+
+{% if b.blo_image %}
+    <img src="{{ b.blo_image.url }}" alt="{{ blog.blo_title }}" width="100">
+{% endif %}
+
+
+--------------------------------------------
+
+**************
+
+trecho de código do blog_single.html
+
+
+<h1>
+    {{ blog.blo_title }}
+</h1>
+
+<h2>
+    {{ blog.blo_subtitle }}
+</h2>
+
+<p>
+    {{ blog.blo_description }}
+</p>
+
+<p>
+    {{ blog.slug }}
+</p>
+
+{% if blog.blo_image %}
+<img src="{{ blog.blo_image.url }}" alt="{{ blog.blo_title }}" width="500">
+{% endif %}
+
+
+
+===================================
+
+45. django-tinymce
+
+1. Instale o Pacote do TinyMCE:
+
+	-->> (via cmd) python -m pip install django-tinymce
+
+
+2. Configure o django-tinymce:
+
+
+	INSTALLED_APPS = [
+    		# ... outros aplicativos
+    		'tinymce',
+	]
+
+
+
+3. Inclua as URLs do TinyMCE:
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path, include
+from tinymce import urls as tinymce_urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('tinymce/', include(tinymce_urls)),
+    # ... outras URLs
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+4. Utilize o TinyMCE no Modelo:
+
+from django.db import models
+from tinymce.models import HTMLField
+
+class MeuModelo(models.Model):
+    conteudo = HTMLField()  # Campo para texto enriquecido
+
+
+
+
+5. Configure o Admin:
+
+
+from django.contrib import admin
+from .models import MeuModelo
+
+@admin.register(MeuModelo)
+class MeuModeloAdmin(admin.ModelAdmin):
+    # Personalize a visualização do formulário se necessário
+    pass
+
+
+
+
+6. Adicione Configurações Opcionais:
+
+#Configuração da largura e altura do tinynce (Heigth, Width)
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 700,  # Altere a altura conforme necessário
+    'width': '100%',   # Altere a largura conforme necessário
+    'plugins': 'textcolor link image lists code',
+    'toolbar': 'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help',
+}
+
+
+7. Para exibir o conteúdo do tinynce no template "|safe"
+
+Exemplo:
+
+<div>
+    {{ content|safe }}
+</div>
+
+===================================
+
+46. Estilização dos campos do Formulário do Admin
+
+1. Criar o Arquivo forms.py no Diretório do Aplicativo - "Core/forms.py"
+
+
+2. Definir o Formulário Personalizado em forms.py:
+
+
+EXEMPLO - BLOG
+
+from django import forms
+from .models import Blog
+
+class BlogAdminForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = '__all__'
+        widgets = {
+            'blo_title': forms.TextInput(attrs={'style': 'width: 80%;'}),
+            'blo_subtitle': forms.TextInput(attrs={'style': 'width: 80%;'})            
+        }
+
+
+
+3. Registrar o Formulário Personalizado no Admin em admin.py:
+
+
+
+
+EXEMPLO - BLOG
+
+@admin.register(Blog)
+class Blog(admin.ModelAdmin):
+    form = BlogAdminForm #Estilização do Form Blog do Admin
+    list_display = ['mini_image', 'blo_title']
+    search_fields = ['blo_title']
+
+
+
+===================================
+
+47. OTIMIZAÇÃO dos arquivos de TEMPLATE
+
+- Crie os arquivos em "templates"
+	_header.html 	- Este arquivo é responsável pelo header das páginas
+	_main.html 	- Este arquivo é responsável pelas requisições dos conteúdos das páginas
+	_footer.html 	- Este arquivo é responsável pelo footer das páginas
+
+
+***************	
+_main.html
+
+
+{% include '_header.html' %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+{% include '_footer.html' %}
+
+
+
+***************	
+_header.html
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>{% block title %}My Website{% endblock %}</title> -->
+    <title> {{ title|default:"Web Django" }} </title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    {% include '_menu.html' %}
+
+
+
+
+
+
+
+OPÇÃO DE FOOTER 1
+***************	
+_footer.html
+
+
+
+<footer>    
+	<p>&copy; {% now "Y" %} - Projeto Web Django. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+</html>
+
+
+
+OPÇÃO DE FOOTER 2
+***************	
+_footer.html
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h3>Sobre</h3>
+            <p>
+                Aprenda a criar aplicações web robustas com Python e Django, cobrindo desde os fundamentos da linguagem
+                até o desenvolvimento completo de projetos web
+            </p>
+        </div>
+        <div class="footer-section links">
+            <h3>Links Rápidos</h3>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'contato' %}">Contato</a></li>
+                <li><a href="{% url 'produtos' %}">Produtos</a></li>
+            </ul>
+        </div>
+        <div class="footer-section social">
+            <h3>Redes Sociais</h3>
+            <a href="#" class="social-icon"> <i class="bi bi-facebook"></i> </a>
+            <a href="#" class="social-icon"> <i class="bi bi-instagram"></i> </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {% now "Y" %} - Projeto Web Django. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+</body>
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+</html>
+
+
+
+
+Estilização css do FOOTER 2
+
+***********************
+
+
+/* Footer Styling */
+.footer {
+    background-color: #222;
+    color: #ecf0f1;
+    padding: 20px 10%;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 35px;
+    color: #fff
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+
+
+----------------------
+**** Agora as páginas do template não terão a parte do header e nem a parte do footer e conterão os comandos do Python para serem carregadas dentro do _main.html
+Exemplos abaixo das páginas
+----------------------
+
+
+***************	
+_contato.html
+
+
+{% extends '_main.html' %}
+{% block content %}
+
+<h2>
+    Python - Contato
+</h2>
+{% endblock %}
+
+
+
+----------------------
+
+
+********
+produtos.html
+
+
+{% extends '_main.html' %}
+{% load static %}
+{% block content %}
+<h2>
+    Python - Produtos
+</h2>
+<!-- {{ category }} -->
+<!-- Filtragem por categoria -->
+{% for cat in category %}
+<p>
+    <a href="{% url 'produtos_categoria' cat_name=cat.cat_name %}">{{ cat.cat_name }}</a></li>
+</p>
+{% endfor %}
+<hr>
+<p>
+    <!-- {{ product }} -->
+</p>
+{% for p in product %}
+<p>
+    <a href="{% url 'produto_single' p.id %}">{{ p }}</a>
+</p>
+{% endfor %}
+{% endblock %}
+
+
+----------------------
+
+
+
+****************
+produtos_single.html
+
+
+
+
+{% extends '_main.html' %}
+{% block content %}
+
+<h2>
+    {{ product.pro_name }}
+</h2>
+
+<p>
+    R$ {{ product.pro_price|floatformat:2 }}
+</p>
+
+<p>
+    Estoque: {{ product.pro_stock }}
+</p>
+
+<p>
+    Categoria: {{ product.pro_category }}
+</p>
+
+<hr>
+
+{% endblock %}
+
+
+
+----------------------
+
+
+==========================================
+
+
+
+Git HUB 
+
+1. Crie uma conta no GIT HUB
+
+2. Crie um Repositório no Git Hub
+
+3. Acesse A pasta do projeto Django em seu computador com o botão direito sobre ela -> Git Bash Here
+
+Iniciar o Git
+	git init
+
+Configurar Nome de Usuário
+	git config --global user.name “Nelci Mariano”​
+
+Configurar E-mail
+	git config --global user.email “professornelcimariano@gmail.com”
+
+Verificar e-mail de usuário (Escreva o comando no git pois ele pode não reconhecer ao copiar e colar)
+	git config user.email​
+
+	git config user.name
+
+Ver status dos arquivos
+	git status
+
+
+Vincular repositório local com um repositório remoto​
+	git remote add origin + (url do repositósio no GitHub) https://github.com/professornelcimariano/projeto_aula_git.git​
+
+	git remote add origin https://github.com/professornelcimariano/projeto_django2.git
+
+Exibe as conexões com o github
+	git remote -v
+
+Exibe os status dos arquivos com o Git
+	git status
+
+
+
+** Em caso de error -> remova o Origin
+	git remote remove origin
+
+Crie o arquivo .gitignore para que arquivos específicos não sejam enviados para o git
+	.gitignore
+
+Adicionar arquivos na zona intermediária
+	git add .
+
+
+Commit
+	git commit -m "comentário qualquer"​
+git
+	git commit -m "1º Commit do Projeto"
+
+
+
+Enviar arquivos para o GitHub
+	git push -u origin master
+ou
+	git push -u origin main
+
+
+Para Trazer os arquivos da Branch main no repositório remoto para o repositório local​
+	git pull origin "main" ou 
+	git pull origin "master" 
+
+
+Faça uma alteração em um arquivo do projeto, salve e execute o comando git diff
+Exibir alterações no arquivo
+	git diff​
+		Para sair do comando git diff, pode pressionar Q maiúsculo
+
+
+Clonar Repositório
+	git clone https://github.com/professornelcimariano/app-coffee-wp.git	
+
+==========================================
+
+
+
+
+============================================================
+
+
+BANCO DE IMAGENS
+
+
+Sites de Imagens Gratuitas
+
+Unsplash - unsplash.com
+
+Pexels - pexels.com
+
+Pixabay - pixabay.com
+
+Freepik - freepik.com
+
+Burst by Shopify - burst.shopify.com
+
+StockSnap - stocksnap.io
+
+Kaboompics - kaboompics.com
+
+Reshot - reshot.com
+
+LibreShot - libreshot.com
+
+Picjumbo - picjumbo.com
+
+Life of Pix - lifeofpix.com
+
+Morguefile - morguefile.com
+
+Foodiesfeed - foodiesfeed.com
+
+Gratisography - gratisography.com
+
+Flickr Commons - flickr.com/commons
+
+New Old Stock - nos.twnsnd.co
+
+Skitterphoto - skitterphoto.com
+
+Picspree - picspree.com
+
+Jay Mantri - jaymantri.com
+
+ISO Republic - isorepublic.com
+
+------------------------------------
+
+Sites de Imagens Pagas
+
+Shutterstock - shutterstock.com
+
+Adobe Stock - stock.adobe.com
+
+Getty Images - gettyimages.com
+
+iStock - istockphoto.com
+
+Dreamstime - dreamstime.com
+
+Depositphotos - depositphotos.com
+
+123RF - 123rf.com
+
+Alamy - alamy.com
+
+Canva - canva.com
+
+Envato Elements - elements.envato.com
+
+
+
+https://github.com/professornelcimariano
